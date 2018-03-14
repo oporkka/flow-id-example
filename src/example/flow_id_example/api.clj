@@ -3,6 +3,8 @@
             [org.zalando.stups.friboo.log :as log]
             [org.zalando.stups.friboo.config :refer [require-config]]
             [com.stuartsierra.component :as component]
+            [example.flow-id-example.service :as service]
+            [example.flow-id-example.service-2 :as service-2]
             [ring.util.response :as r]))
 
 (defrecord Controller [configuration]
@@ -14,9 +16,12 @@
     (log/info "Stopping API Controller")
     this))
 
-(defn get-hello
-  "Says hello"
-  [{:as this :keys [configuration]} {:as params :keys [name]} request]
-  (log/debug "API configuration: %s" configuration)
-  (log/info "Hello called for %s" name)
-  (r/response {:message (str "Hello " name) :details {:X-friboo (require-config configuration :example-param)}}))
+(defn get-status
+  [{:keys [service] :as this} {:as params :keys [status x-flow-id]} request]
+  (service/exists service status x-flow-id))
+
+(defn get-status-with-flow-id-component
+  [{:keys [service-2] :as this} {:as params :keys [status]} request]
+  (service-2/exists service-2 status))
+
+

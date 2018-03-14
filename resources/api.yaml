@@ -26,29 +26,42 @@ paths:
       responses:
         default:
           description: "Redirects to /ui/"
-
-  '/hello/{name}':
+  '/exists/{status}':
     get:
-      summary: Says hello
-      description: |
-        Says hello personally to {name}
+      summary: Get http status
       parameters:
-        - $ref: '#/parameters/Name'
-      tags:
-        - General
-      operationId: "example.flow-id-example.api/get-hello"
+        - $ref: '#/parameters/Status'
+        - $ref: '#/parameters/FlowId'
+      operationId: "example.flow-id-example.api/get-status"
       responses:
         200:
-          description: Hello is said
+          description: It works!
+        default:
+          $ref: '#/responses/Error'
+  '/exists-with-fid-component/{status}':
+    get:
+      summary: Get http status
+      parameters:
+        - $ref: '#/parameters/Status'
+        - $ref: '#/parameters/FlowId'
+      operationId: "example.flow-id-example.api/get-status-with-flow-id-component"
+      responses:
+        200:
+          description: It works!
         default:
           $ref: '#/responses/Error'
 
 parameters:
-  Name:
-    name: name
+  Status:
+    name: status
     in: path
+    type: integer
+    description: HTTP status code to check
+  FlowId:
+    name: x-flow-id
+    in: header
     type: string
-    description: Name of the person to greet
+    description: Flow tracking header to be passed to dependency calls
 
 responses:
   Error:

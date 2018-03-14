@@ -45,12 +45,3 @@
   []
   (stop)
   (refresh :after 'user/go))
-
-(defn run-tests []
-  (run-all-tests #"example.flow-id-example.*-test"))
-
-(defn tests
-  "Stops the system, reloads modified source files and runs tests"
-  []
-  (stop)
-  (refresh :after 'user/run-tests))
