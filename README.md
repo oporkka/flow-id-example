@@ -1,6 +1,8 @@
-# flow-id-example
+# Request scoped component dependencies
 
-A project based on Friboo library.
+An example project that presents request scoped component dependencies.
+
+Project based on Friboo library.
 
 ## Development
 
@@ -39,7 +41,6 @@ The following configuration environment variables are available:
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2018 Oskari Porkka
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the MIT License.
